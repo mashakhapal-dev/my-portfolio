@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хапаль Мария — Веб-разработчик</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Inter:wght@400;600&display=swap">
+    <style>
+        /* 1. Сочная палитра: Лайм, Персик, Розовый */
+        :root {
+            --bg-page: #FDF9F1;          /* Очень светлый теплый фон */
+            --text-dark: #2D2A26;        /* Темно-коричневый (вместо черного) */
+            --lime: #CCFF00;             /* Яркий кислотный лайм */
+            --peach: #FFC3A0;            /* Мягкий персиковый */
+            --pink: #FF6B9E;             /* Сочный розовый */
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* 2. Необычная форма карточки */
+        .card {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 40px;
+            border: 4px solid var(--text-dark); /* Жирная обводка (нео-брутализм) */
+            box-shadow: 16px 16px 0px var(--peach); /* Жесткая тень без размытия */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content {
+            flex: 1;
+            padding: 60px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* 3. Плашка */
+        .tag {
+            display: inline-block;
+            background-color: var(--lime);
+            color: var(--text-dark);
+            font-weight: 800;
+            padding: 8px 20px;
+            border-radius: 50px; /* Форма таблетки */
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 3px solid var(--text-dark);
+            align-self: flex-start;
+            margin-bottom: 24px;
+        }
+
+        /* 4. Заголовок с акцентным словом */
+        h1 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        h1 span {
+            color: var(--pink);
+            display: inline-block;
+            position: relative;
+        }
+
+        /* Декоративная линия под именем */
+        h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background-color: var(--lime);
+            z-index: -1;
+            transform: rotate(-2deg);
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 95%;
+            font-weight: 400;
+        }
+
+        /* 5. Кнопки в стиле "Pop-art" */
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 18px 36px;
+            border-radius: 100px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: 3px solid var(--text-dark);
+        }
+
+        .btn-main {
+            background-color: var(--lime);
+            color: var(--text-dark);
+            box-shadow: 6px 6px 0px var(--text-dark);
+        }
+
+        /* Кнопка при нажатии "вдавливается" */
+        .btn-main:active {
+            transform: translate(6px, 6px);
+            box-shadow: 0px 0px 0px var(--text-dark);
+        }
+
+        .btn-main:hover {
+            background-color: #b3e600;
+        }
+
+        .btn-outline {
+            background-color: var(--card-bg);
+            color: var(--text-dark);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--peach);
+        }
+
+        /* 6. Блок с фото */
+        .photo-wrapper {
+            flex-shrink: 0;
+            width: 450px;
+            background-color: var(--pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            border-left: 4px solid var(--text-dark);
+            position: relative;
+        }
+
+        /* Декоративный узор из кругов на розовом фоне */
+        .photo-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(var(--lime) 3px, transparent 3px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .avatar {
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            border-radius: 30px;
+            border: 4px solid var(--text-dark);
+            box-shadow: 12px 12px 0px var(--lime); /* Лаймовая жесткая тень */
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+
+        /* 7. Адаптив для мобильных */
+        @media (max-width: 950px) {
+            .card {
+                flex-direction: column;
+                box-shadow: 10px 10px 0px var(--peach);
+            }
+            .content {
+                padding: 40px 30px;
+                text-align: center;
+            }
+            h1 { font-size: 2.8rem; }
+            h1 span::after { bottom: 2px; height: 8px; }
+            p { margin: 0 auto 30px; }
+            .tag { align-self: center; }
+            .buttons { flex-direction: column; justify-content: center; }
+            .photo-wrapper {
+                width: 100%;
+                border-left: none;
+                border-top: 4px solid var(--text-dark);
+                padding: 40px 20px;
+            }
+            .avatar { max-width: 260px; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="card">
+        <div class="content">
+            <div class="tag">Frontend Developer</div>
+            <h1>Привет, я<br><span>Мария</span></h1>
+            <p>Создаю современные, быстрые и эстетичные интерфейсы. Влюблена в чистый код и продуманный дизайн.</p>
+            
+            <div class="buttons">
+                <a href="#contact" class="btn btn-main">Связаться со мной</a>
+                <a href="#portfolio" class="btn btn-outline">Мои работы</a>
+            </div>
+        </div>
+
+        <div class="photo-wrapper">
+            <img src="photo.jpg" alt="Хапаль Мария" class="avatar">
+        </div>
+    </main>
+
+</body>
+</html>
